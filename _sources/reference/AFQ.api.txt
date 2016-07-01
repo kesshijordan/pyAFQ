@@ -1,0 +1,38 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+:mod:`api`
+==========
+.. automodule:: AFQ.api
+
+.. currentmodule:: AFQ.api
+.. autosummary::
+
+   AFQ
+   do_preprocessing
+   median_otsu
+
+
+.. currentmodule:: AFQ.api
+
+
+:class:`AFQ`
+~~~~~~~~~~~~
+
+
+.. autoclass:: AFQ
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
+
+do_preprocessing
+~~~~~~~~~~~~~~~~
+
+.. autofunction:: do_preprocessing
+
+median_otsu
+~~~~~~~~~~~
+
+.. autofunction:: median_otsu
+

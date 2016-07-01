@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AFQ.utils.parallel &mdash; AFQ 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="AFQ 0.1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../../index.html" class="fa fa-home"> AFQ</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../auto_examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../auto_examples/plot_tract_profile.html">Plotting a tract profile</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/AFQ.html"><code class="docutils literal"><span class="pre">AFQ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/AFQ.api.html"><code class="docutils literal"><span class="pre">api</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/AFQ.csd.html"><code class="docutils literal"><span class="pre">csd</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/AFQ.data.html"><code class="docutils literal"><span class="pre">data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/AFQ.dki.html"><code class="docutils literal"><span class="pre">dki</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/AFQ.dti.html"><code class="docutils literal"><span class="pre">dti</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/AFQ.registration.html"><code class="docutils literal"><span class="pre">registration</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/AFQ.segmentation.html"><code class="docutils literal"><span class="pre">segmentation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/AFQ.tractography.html"><code class="docutils literal"><span class="pre">tractography</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">AFQ</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>AFQ.utils.parallel</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for AFQ.utils.parallel</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+<span class="kn">import</span> <span class="nn">dask</span>
+<span class="kn">import</span> <span class="nn">dask.multiprocessing</span>
+
+
+<div class="viewcode-block" id="parfor"><a class="viewcode-back" href="../../../reference/AFQ.tractography.html#AFQ.tractography.parfor">[docs]</a><span class="k">def</span> <span class="nf">parfor</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">in_list</span><span class="p">,</span> <span class="n">out_shape</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s">&quot;joblib&quot;</span><span class="p">,</span>
+           <span class="n">backend</span><span class="o">=</span><span class="s">&quot;threading&quot;</span><span class="p">,</span> <span class="n">func_args</span><span class="o">=</span><span class="p">[],</span> <span class="n">func_kwargs</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parallel for loop for numpy arrays</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    func : callable</span>
+<span class="sd">        The function to apply to each item in the array. Must have the form:</span>
+<span class="sd">        func(arr, idx, *args, *kwargs) where arr is an ndarray and idx is an</span>
+<span class="sd">        index into that array (a tuple). The Return of `func` needs to be one</span>
+<span class="sd">        item (e.g. float, int) per input item.</span>
+<span class="sd">    in_list : list</span>
+<span class="sd">       All legitimate inputs to the function to operate over.</span>
+<span class="sd">    n_jobs : integer, optional</span>
+<span class="sd">        The number of jobs to perform in parallel. -1 to use all cpus.</span>
+<span class="sd">        Default: 1</span>
+<span class="sd">    engine : str</span>
+<span class="sd">        {&quot;dask&quot;, &quot;joblib&quot;, &quot;serial&quot;}</span>
+<span class="sd">        The last one is useful for debugging -- runs the code without any</span>
+<span class="sd">        parallelization.</span>
+<span class="sd">    backend : str</span>
+<span class="sd">        What joblib backend to use. Irrelevant for other engines.</span>
+<span class="sd">    func_args : list, optional</span>
+<span class="sd">        Positional arguments to `func`.</span>
+<span class="sd">    func_kwargs : list, optional</span>
+<span class="sd">        Keyword arguments to `func`.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ndarray of identical shape to `arr`</span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">n_jobs</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">n_jobs</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+        <span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">engine</span> <span class="o">==</span> <span class="s">&quot;joblib&quot;</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="n">d_l</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">in_element</span> <span class="ow">in</span> <span class="n">in_list</span><span class="p">:</span>
+            <span class="n">d_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">(</span><span class="n">in_element</span><span class="p">,</span> <span class="o">*</span><span class="n">func_args</span><span class="p">,</span> <span class="o">**</span><span class="n">func_kwargs</span><span class="p">))</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="n">d_l</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">engine</span> <span class="o">==</span> <span class="s">&quot;dask&quot;</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">partial</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">keywords</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">newfunc</span><span class="p">(</span><span class="n">in_arg</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">in_arg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">keywords</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">newfunc</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">func_args</span><span class="p">,</span> <span class="o">**</span><span class="n">func_kwargs</span><span class="p">)</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="n">dask</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">p</span><span class="p">)(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">in_list</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s">&quot;multiprocessing&quot;</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="n">get</span><span class="o">=</span><span class="n">dask</span><span class="o">.</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">get</span><span class="p">,</span>
+                                   <span class="n">workers</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s">&quot;threading&quot;</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="n">get</span><span class="o">=</span><span class="n">dask</span><span class="o">.</span><span class="n">threaded</span><span class="o">.</span><span class="n">get</span><span class="p">,</span>
+                                   <span class="n">workers</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">engine</span> <span class="o">==</span> <span class="s">&quot;serial&quot;</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">in_element</span> <span class="ow">in</span> <span class="n">in_list</span><span class="p">:</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">in_element</span><span class="p">,</span> <span class="o">*</span><span class="n">func_args</span><span class="p">,</span> <span class="o">**</span><span class="n">func_kwargs</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">out_shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">out_shape</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">results</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Ariel Rokem and Jason Yeatman, The University of Washington eScience Institute.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

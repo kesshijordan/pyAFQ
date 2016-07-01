@@ -1,0 +1,115 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+:mod:`tractography`
+===================
+.. automodule:: AFQ.tractography
+
+.. currentmodule:: AFQ.tractography
+.. autosummary::
+
+   Bunch
+   DeterministicMaximumDirectionGetter
+   ParallelLocalTracking
+   ProbabilisticDirectionGetter
+   ThresholdTissueClassifier
+   chain
+   local_tracker
+   parfor
+   tensor_odf
+   track
+
+
+.. currentmodule:: AFQ.tractography
+
+
+:class:`Bunch`
+~~~~~~~~~~~~~~
+
+
+.. autoclass:: Bunch
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
+
+
+:class:`DeterministicMaximumDirectionGetter`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+.. autoclass:: DeterministicMaximumDirectionGetter
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
+
+
+:class:`ParallelLocalTracking`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+.. autoclass:: ParallelLocalTracking
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
+
+
+:class:`ProbabilisticDirectionGetter`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+.. autoclass:: ProbabilisticDirectionGetter
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
+
+
+:class:`ThresholdTissueClassifier`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+.. autoclass:: ThresholdTissueClassifier
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
+
+
+:class:`chain`
+~~~~~~~~~~~~~~
+
+
+.. autoclass:: chain
+  :members:
+  :undoc-members:
+  :show-inheritance:
+
+  .. automethod:: __init__
+
+local_tracker
+~~~~~~~~~~~~~
+
+.. autofunction:: local_tracker
+
+parfor
+~~~~~~
+
+.. autofunction:: parfor
+
+tensor_odf
+~~~~~~~~~~
+
+.. autofunction:: tensor_odf
+
+track
+~~~~~
+
+.. autofunction:: track
+

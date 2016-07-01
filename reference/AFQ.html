@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AFQ &mdash; AFQ 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="AFQ 0.1.0 documentation" href="../index.html"/>
+        <link rel="up" title="API Reference" href="index.html"/>
+        <link rel="prev" title="API Reference" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> AFQ</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_tract_profile.html">Plotting a tract profile</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href=""><code class="docutils literal"><span class="pre">AFQ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="AFQ.api.html"><code class="docutils literal"><span class="pre">api</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="AFQ.csd.html"><code class="docutils literal"><span class="pre">csd</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="AFQ.data.html"><code class="docutils literal"><span class="pre">data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="AFQ.dki.html"><code class="docutils literal"><span class="pre">dki</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="AFQ.dti.html"><code class="docutils literal"><span class="pre">dti</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="AFQ.registration.html"><code class="docutils literal"><span class="pre">registration</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="AFQ.segmentation.html"><code class="docutils literal"><span class="pre">segmentation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="AFQ.tractography.html"><code class="docutils literal"><span class="pre">tractography</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">AFQ</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+      
+    <li><code class="docutils literal"><span class="pre">AFQ</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/reference/AFQ.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="module-AFQ">
+<span id="afq"></span><h1><a class="reference internal" href="#module-AFQ" title="AFQ"><code class="xref py py-mod docutils literal"><span class="pre">AFQ</span></code></a><a class="headerlink" href="#module-AFQ" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#AFQ.AFQ" title="AFQ.AFQ"><code class="xref py py-obj docutils literal"><span class="pre">AFQ</span></code></a>([raw_path,&nbsp;preproc_path,&nbsp;sub_prefix,&nbsp;...])</td>
+<td>Requires the following file structure:</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#AFQ.do_preprocessing" title="AFQ.do_preprocessing"><code class="xref py py-obj docutils literal"><span class="pre">do_preprocessing</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#AFQ.fetch_callosum_templates" title="AFQ.fetch_callosum_templates"><code class="xref py py-obj docutils literal"><span class="pre">fetch_callosum_templates</span></code></a>()</td>
+<td>Download AFQ callosum templates</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#AFQ.fetch_hcp" title="AFQ.fetch_hcp"><code class="xref py py-obj docutils literal"><span class="pre">fetch_hcp</span></code></a>(subjects)</td>
+<td>Fetch HCP diffusion data.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#AFQ.fetch_stanford_hardi_tractography" title="AFQ.fetch_stanford_hardi_tractography"><code class="xref py py-obj docutils literal"><span class="pre">fetch_stanford_hardi_tractography</span></code></a>()</td>
+<td>Download Stanford HARDI tractography and mapping.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#AFQ.fetch_templates" title="AFQ.fetch_templates"><code class="xref py py-obj docutils literal"><span class="pre">fetch_templates</span></code></a>()</td>
+<td>Download AFQ callosum templates</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#AFQ.median_otsu" title="AFQ.median_otsu"><code class="xref py py-obj docutils literal"><span class="pre">median_otsu</span></code></a>(input_volume[,&nbsp;median_radius,&nbsp;...])</td>
+<td>Simple brain extraction tool method for images from DWI data.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#AFQ.read_callosum_templates" title="AFQ.read_callosum_templates"><code class="xref py py-obj docutils literal"><span class="pre">read_callosum_templates</span></code></a>()</td>
+<td>Load AFQ callosum templates from file</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#AFQ.read_stanford_hardi_tractography" title="AFQ.read_stanford_hardi_tractography"><code class="xref py py-obj docutils literal"><span class="pre">read_stanford_hardi_tractography</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#AFQ.read_templates" title="AFQ.read_templates"><code class="xref py py-obj docutils literal"><span class="pre">read_templates</span></code></a>()</td>
+<td>Load AFQ templates from file</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id1">
+<h2><a class="reference internal" href="#module-AFQ" title="AFQ"><code class="xref py py-class docutils literal"><span class="pre">AFQ</span></code></a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="AFQ.AFQ">
+<em class="property">class </em><code class="descclassname">AFQ.</code><code class="descname">AFQ</code><span class="sig-paren">(</span><em>raw_path=None</em>, <em>preproc_path=None</em>, <em>sub_prefix='sub'</em>, <em>dwi_folder='dwi'</em>, <em>dwi_file='*dwi*'</em>, <em>anat_folder='anat'</em>, <em>anat_file='*T1w*'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/AFQ/api.html#AFQ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.AFQ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Requires the following file structure:</p>
+<dl class="docutils">
+<dt>study_folder/</dt>
+<dd>sub-01
+sub-02/sess-test
+sub-02/sess-retest/anat/T1w.nii.gz
+sub-02/sess-retest/dwi/dwi.nii.gz
+sub-02/sess-retest/dwi/dwi.bvals
+sub-02/sess-retest/dwi/dwi.bvecs</dd>
+</dl>
+<p>All subjects&#8217;/sessions&#8217; dwi_prefix needs to be the same!</p>
+<p>That is, you <em>can&#8217;t</em> have:</p>
+<blockquote>
+<div>sub-01/sess-test/dwi/dwi.nii.gz
+sub-02/sess-retest/dwi/dwi_foo.nii.gz</div></blockquote>
+<p>Even though these are different subjects/sessions/etc.</p>
+<p>Instead you can (and must!) have:</p>
+<blockquote>
+<div>sub-01/sess-test/dwi/mydata_foo.nii.gz
+sub-02/sess-retest/dwi/mydata_foo.nii.gz</div></blockquote>
+<p>Where any part of this string (e.g. &#8220;foo&#8221;) can report on things like the
+number of directions, the preprocessing that happened, etc.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#AFQ.AFQ.brain_extraction" title="AFQ.AFQ.brain_extraction"><code class="xref py py-obj docutils literal"><span class="pre">brain_extraction</span></code></a>([median_radius,&nbsp;numpass,&nbsp;...])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#AFQ.AFQ.fit_tensors" title="AFQ.AFQ.fit_tensors"><code class="xref py py-obj docutils literal"><span class="pre">fit_tensors</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#AFQ.AFQ.init_affine" title="AFQ.AFQ.init_affine"><code class="xref py py-obj docutils literal"><span class="pre">init_affine</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#AFQ.AFQ.init_gtab" title="AFQ.AFQ.init_gtab"><code class="xref py py-obj docutils literal"><span class="pre">init_gtab</span></code></a>()</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="AFQ.AFQ.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>raw_path=None</em>, <em>preproc_path=None</em>, <em>sub_prefix='sub'</em>, <em>dwi_folder='dwi'</em>, <em>dwi_file='*dwi*'</em>, <em>anat_folder='anat'</em>, <em>anat_file='*T1w*'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/AFQ/api.html#AFQ.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.AFQ.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AFQ.AFQ.brain_extraction">
+<code class="descname">brain_extraction</code><span class="sig-paren">(</span><em>median_radius=4</em>, <em>numpass=4</em>, <em>autocrop=False</em>, <em>vol_idx=None</em>, <em>dilate=None</em>, <em>force_recompute=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/AFQ/api.html#AFQ.brain_extraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.AFQ.brain_extraction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AFQ.AFQ.fit_tensors">
+<code class="descname">fit_tensors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/AFQ/api.html#AFQ.fit_tensors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.AFQ.fit_tensors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AFQ.AFQ.init_affine">
+<code class="descname">init_affine</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/AFQ/api.html#AFQ.init_affine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.AFQ.init_affine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="AFQ.AFQ.init_gtab">
+<code class="descname">init_gtab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/AFQ/api.html#AFQ.init_gtab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.AFQ.init_gtab" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="do-preprocessing">
+<h2>do_preprocessing<a class="headerlink" href="#do-preprocessing" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="AFQ.do_preprocessing">
+<code class="descclassname">AFQ.</code><code class="descname">do_preprocessing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/AFQ/api.html#do_preprocessing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.do_preprocessing" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="fetch-callosum-templates">
+<h2>fetch_callosum_templates<a class="headerlink" href="#fetch-callosum-templates" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="AFQ.fetch_callosum_templates">
+<code class="descclassname">AFQ.</code><code class="descname">fetch_callosum_templates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AFQ.fetch_callosum_templates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download AFQ callosum templates</p>
+</dd></dl>
+
+</div>
+<div class="section" id="fetch-hcp">
+<h2>fetch_hcp<a class="headerlink" href="#fetch-hcp" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="AFQ.fetch_hcp">
+<code class="descclassname">AFQ.</code><code class="descname">fetch_hcp</code><span class="sig-paren">(</span><em>subjects</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/AFQ/data.html#fetch_hcp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.fetch_hcp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch HCP diffusion data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>subjects</strong> : list</p>
+<blockquote>
+<div><p>Each item is an integer, identifying one of the HCP subjects</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dict with remote and local names of thes files.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>To use this function, you need to have a file &#8216;~/.aws/credentials&#8217;, that
+includes a section:</p>
+<p>[hcp]
+AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXX
+AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXX</p>
+<p>The keys are credentials that you can get from HCP (see <a class="reference external" href="https://wiki.humanconnectome.org/display/PublicData/How+To+Connect+to+Connectome+Data+via+AWS">https://wiki.humanconnectome.org/display/PublicData/How+To+Connect+to+Connectome+Data+via+AWS</a>)  # noqa</p>
+<p>Local filenames are changed to match our expected conventions.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="fetch-stanford-hardi-tractography">
+<h2>fetch_stanford_hardi_tractography<a class="headerlink" href="#fetch-stanford-hardi-tractography" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="AFQ.fetch_stanford_hardi_tractography">
+<code class="descclassname">AFQ.</code><code class="descname">fetch_stanford_hardi_tractography</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AFQ.fetch_stanford_hardi_tractography" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download Stanford HARDI tractography and mapping. For testing
+purposes</p>
+</dd></dl>
+
+</div>
+<div class="section" id="fetch-templates">
+<h2>fetch_templates<a class="headerlink" href="#fetch-templates" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="AFQ.fetch_templates">
+<code class="descclassname">AFQ.</code><code class="descname">fetch_templates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AFQ.fetch_templates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download AFQ callosum templates</p>
+</dd></dl>
+
+</div>
+<div class="section" id="median-otsu">
+<h2>median_otsu<a class="headerlink" href="#median-otsu" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="AFQ.median_otsu">
+<code class="descclassname">AFQ.</code><code class="descname">median_otsu</code><span class="sig-paren">(</span><em>input_volume</em>, <em>median_radius=4</em>, <em>numpass=4</em>, <em>autocrop=False</em>, <em>vol_idx=None</em>, <em>dilate=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dipy/segment/mask.html#median_otsu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.median_otsu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple brain extraction tool method for images from DWI data.</p>
+<p>It uses a median filter smoothing of the input_volumes <cite>vol_idx</cite> and an
+automatic histogram Otsu thresholding technique, hence the name
+<em>median_otsu</em>.</p>
+<p>This function is inspired from Mrtrix&#8217;s bet which has default values
+<code class="docutils literal"><span class="pre">median_radius=3</span></code>, <code class="docutils literal"><span class="pre">numpass=2</span></code>. However, from tests on multiple 1.5T
+and 3T data     from GE, Philips, Siemens, the most robust choice is
+<code class="docutils literal"><span class="pre">median_radius=4</span></code>, <code class="docutils literal"><span class="pre">numpass=4</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>input_volume</strong> : ndarray</p>
+<blockquote>
+<div><p>ndarray of the brain volume</p>
+</div></blockquote>
+<p><strong>median_radius</strong> : int</p>
+<blockquote>
+<div><p>Radius (in voxels) of the applied median filter (default: 4).</p>
+</div></blockquote>
+<p><strong>numpass: int</strong></p>
+<blockquote>
+<div><p>Number of pass of the median filter (default: 4).</p>
+</div></blockquote>
+<p><strong>autocrop: bool, optional</strong></p>
+<blockquote>
+<div><p>if True, the masked input_volume will also be cropped using the
+bounding box defined by the masked data. Should be on if DWI is
+upsampled to 1x1x1 resolution. (default: False).</p>
+</div></blockquote>
+<p><strong>vol_idx</strong> : None or array, optional</p>
+<blockquote>
+<div><p>1D array representing indices of <code class="docutils literal"><span class="pre">axis=3</span></code> of a 4D <cite>input_volume</cite> None
+(the default) corresponds to <code class="docutils literal"><span class="pre">(0,)</span></code> (assumes first volume in
+4D array).</p>
+</div></blockquote>
+<p><strong>dilate</strong> : None or int, optional</p>
+<blockquote>
+<div><p>number of iterations for binary dilation</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>maskedvolume</strong> : ndarray</p>
+<blockquote>
+<div><p>Masked input_volume</p>
+</div></blockquote>
+<p><strong>mask</strong> : 3D ndarray</p>
+<blockquote class="last">
+<div><p>The binary brain mask</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Copyright (C) 2011, the scikit-image team
+All rights reserved.</p>
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in
+the documentation and/or other materials provided with the
+distribution.</li>
+<li>Neither the name of skimage nor the names of its contributors may be
+used to endorse or promote products derived from this software without
+specific prior written permission.</li>
+</ol>
+</div></blockquote>
+<p>THIS SOFTWARE IS PROVIDED BY THE AUTHOR <a href="#id2"><span class="problematic" id="id3">``</span></a>AS IS&#8217;&#8217; AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="read-callosum-templates">
+<h2>read_callosum_templates<a class="headerlink" href="#read-callosum-templates" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="AFQ.read_callosum_templates">
+<code class="descclassname">AFQ.</code><code class="descname">read_callosum_templates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/AFQ/data.html#read_callosum_templates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.read_callosum_templates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load AFQ callosum templates from file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict with: keys: names of template ROIs and values: nibabel Nifti1Image</p>
+<p class="last">objects from each of the ROI nifti files.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="read-stanford-hardi-tractography">
+<h2>read_stanford_hardi_tractography<a class="headerlink" href="#read-stanford-hardi-tractography" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="AFQ.read_stanford_hardi_tractography">
+<code class="descclassname">AFQ.</code><code class="descname">read_stanford_hardi_tractography</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/AFQ/data.html#read_stanford_hardi_tractography"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.read_stanford_hardi_tractography" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="read-templates">
+<h2>read_templates<a class="headerlink" href="#read-templates" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="AFQ.read_templates">
+<code class="descclassname">AFQ.</code><code class="descname">read_templates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/AFQ/data.html#read_templates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#AFQ.read_templates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load AFQ templates from file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict with: keys: names of template ROIs and values: nibabel Nifti1Image</p>
+<p class="last">objects from each of the ROI nifti files.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="API Reference"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Ariel Rokem and Jason Yeatman, The University of Washington eScience Institute.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

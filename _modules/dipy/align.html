@@ -1,0 +1,205 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dipy.align &mdash; AFQ 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="AFQ 0.1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> AFQ</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_tract_profile.html">Plotting a tract profile</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/AFQ.html"><code class="docutils literal"><span class="pre">AFQ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/AFQ.api.html"><code class="docutils literal"><span class="pre">api</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/AFQ.csd.html"><code class="docutils literal"><span class="pre">csd</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/AFQ.data.html"><code class="docutils literal"><span class="pre">data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/AFQ.dki.html"><code class="docutils literal"><span class="pre">dki</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/AFQ.dti.html"><code class="docutils literal"><span class="pre">dti</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/AFQ.registration.html"><code class="docutils literal"><span class="pre">registration</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/AFQ.segmentation.html"><code class="docutils literal"><span class="pre">segmentation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/AFQ.tractography.html"><code class="docutils literal"><span class="pre">tractography</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">AFQ</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>dipy.align</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for dipy.align</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">floating</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+
+<div class="viewcode-block" id="Bunch"><a class="viewcode-back" href="../../reference/AFQ.tractography.html#AFQ.tractography.Bunch">[docs]</a><span class="k">class</span> <span class="nc">Bunch</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Bunch.__init__"><a class="viewcode-back" href="../../reference/AFQ.tractography.html#AFQ.tractography.Bunch.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="sd">r&quot;&quot;&quot;A &#39;bunch&#39; of values (a replacement of Enum)</span>
+<span class="sd">        </span>
+<span class="sd">        This is a temporary replacement of Enum, which is not available</span>
+<span class="sd">        on all versions of Python 2</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds</span><span class="p">)</span></div></div>
+
+<span class="n">VerbosityLevels</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">NONE</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">STATUS</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">DIAGNOSE</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">DEBUG</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="sd">r&quot;&quot;&quot; VerbosityLevels</span>
+<span class="sd">This enum defines the four levels of verbosity we use in the align</span>
+<span class="sd">module.</span>
+<span class="sd">NONE : do not print anything</span>
+<span class="sd">STATUS : print information about the current status of the algorithm</span>
+<span class="sd">DIAGNOSE : print high level information of the components involved in the</span>
+<span class="sd">registration that can be used to detect a failing component.</span>
+<span class="sd">DEBUG : print as much information as possible to isolate the cause of a bug.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+
+
+
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Ariel Rokem and Jason Yeatman, The University of Washington eScience Institute.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
