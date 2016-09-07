@@ -75,6 +75,7 @@ def segment(fdata, fbval, fbvec, streamlines, bundles,
     print "USING XTRA AFFINE"
     xform_sl = [s for s in dtu.move_streamlines(streamlines,
                                                 xtraaff)]
+    xform_sl = [s for s in dtu.move_streamlines(xform_sl, imgaff)]
 
     if reg_template is None:
         reg_template = dpd.read_mni_template()

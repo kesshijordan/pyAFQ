@@ -55,10 +55,10 @@ trk,hdr = nib.trackvis.read('dti_streamlines.trk')
 #flexiaff = dip_ut.get_flexi_tvis_affine(hdr, img.get_affine())
 
 # Use only a small portion of the streamlines, for expedience:
-streamlines = streamlines[::100]
+#streamlines = streamlines[::100]
 
 templates = afd.read_templates()
-bundle_names = ["ILF"]
+bundle_names = ["CST","ILF"]
 
 bundles = {}
 for name in bundle_names:
@@ -95,6 +95,8 @@ FA_data = FA_img.get_data()
 
 print("Extracting tract profiles...")
 for i, bundle in enumerate(bundles):
+    print "BUNDLE"
+    print bundle
     fig, ax = plt.subplots(1)
     w = seg.gaussian_weights(fiber_groups[bundle])
     profile = seg.calculate_tract_profile(FA_data, fiber_groups[bundle],
