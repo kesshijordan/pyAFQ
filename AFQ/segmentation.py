@@ -43,7 +43,7 @@ def patch_up_roi(roi):
 
 
 def segment(fdata, fbval, fbvec, streamlines, bundles,
-            reg_template=None, mapping=None, as_generator=True, **reg_kwargs):
+            reg_template=None, mapping=None, as_generator=True, hdr=None, **reg_kwargs):
     """
 
     generate : bool
@@ -59,8 +59,22 @@ def segment(fdata, fbval, fbvec, streamlines, bundles,
 
     """
     img, data, gtab, mask = ut.prepare_data(fdata, fbval, fbvec)
+
+    imgaff = img.get_affine()
+    dim = hdr['dim']
+
+    from dipy.io.bvectxt import orientation_from_string
+    from dipy.tracking.utils import reorder_voxels_affine, get_flexi_tvis_affine, affine_for_trackvis
+    sl_ornt = orientation_from_string(str(hdr['voxel_order']))
+    grid_ornt = nib.io_orientation(imgaff)
+    reorder_grid = reorder_voxels_affine(grid_ornt, sl_ornt, np.array(dim)-1, np.array([1,1,1]))
+
+    xtraaff = reorder_grid
+    #xtraaff = get_flexi_tvis_affine(hdr, imgaff)
+
+    print "USING XTRA AFFINE"
     xform_sl = [s for s in dtu.move_streamlines(streamlines,
-                                                np.linalg.inv(img.affine))]
+                                                xtraaff)]
 
     if reg_template is None:
         reg_template = dpd.read_mni_template()

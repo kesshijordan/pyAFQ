@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns  # noqa
 import nibabel as nib
 import dipy.data as dpd
-from dipy.data import fetcher
+import dipy.tracking.utils as dip_ut
 
 import AFQ.utils.streamlines as aus
 import AFQ.data as afd
@@ -26,6 +26,7 @@ import AFQ.segmentation as seg
 
 
 dpd.fetch_stanford_hardi()
+dpd.fetch_stanford_t1()
 
 hardi_dir = op.join(fetcher.dipy_home, "stanford_hardi")
 hardi_fdata = op.join(hardi_dir, "HARDI150.nii.gz")
@@ -50,12 +51,14 @@ if not op.exists('dti_streamlines.trk'):
 else:
     streamlines = aus.read_trk('./dti_streamlines.trk')
 
+trk,hdr = nib.trackvis.read('dti_streamlines.trk')
+#flexiaff = dip_ut.get_flexi_tvis_affine(hdr, img.get_affine())
 
 # Use only a small portion of the streamlines, for expedience:
 streamlines = streamlines[::100]
 
 templates = afd.read_templates()
-bundle_names = ["CST", "ILF"]
+bundle_names = ["ILF"]
 
 bundles = {}
 for name in bundle_names:
@@ -75,7 +78,7 @@ if not op.exists('mapping.nii.gz'):
 else:
     mapping = reg.read_mapping('./mapping.nii.gz', img, MNI_T2_img)
 
-print("Segmenting fiber groups...")
+print("Segmenting fiber groups...lala")
 fiber_groups = seg.segment(hardi_fdata,
                            hardi_fbval,
                            hardi_fbvec,
@@ -83,16 +86,19 @@ fiber_groups = seg.segment(hardi_fdata,
                            bundles,
                            reg_template=MNI_T2_img,
                            mapping=mapping,
-                           as_generator=False)
+                           as_generator=False, hdr=hdr)
+
+print fiber_groups
 
 FA_img = nib.load(dti_params['FA'])
 FA_data = FA_img.get_data()
 
 print("Extracting tract profiles...")
-for bundle in bundles:
+for i, bundle in enumerate(bundles):
     fig, ax = plt.subplots(1)
     w = seg.gaussian_weights(fiber_groups[bundle])
     profile = seg.calculate_tract_profile(FA_data, fiber_groups[bundle],
                                           weights=w)
     ax.plot(profile)
     ax.set_title(bundle)
+    fig.savefig('testfig%s.png' % i)
