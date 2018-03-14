@@ -39,7 +39,11 @@ def patch_up_roi(roi):
     -------
     ROI after dilation and hole-filling
     """
-    return ndim.binary_fill_holes(ndim.binary_dilation(roi).astype(int))
+    struct = ndim.generate_binary_structure(3, 2)
+    filled = ndim.binary_fill_holes(ndim.binary_dilation(roi,
+                                    structure=struct).astype(int),
+                                    structure=struct)
+    return filled
 
 
 def segment(fdata, fbval, fbvec, streamlines, bundles,
@@ -90,6 +94,7 @@ def segment(fdata, fbval, fbvec, streamlines, bundles,
 
     fiber_groups = {}
     for bundle in bundles:
+        print(bundle)
         select_sl = xform_sl
         for ROI, rule in zip(bundles[bundle]['ROIs'],
                              bundles[bundle]['rules']):
